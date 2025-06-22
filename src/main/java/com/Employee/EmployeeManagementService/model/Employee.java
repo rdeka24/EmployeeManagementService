@@ -4,14 +4,20 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int empId;
+
+    @NotBlank(message = "Employee name is mandatory")
     private String empName;
-    private double empSal;
+    @NotNull(message = "Employee Salary is mandatory")
+    private Double empSal;
+    @NotBlank(message = "Employee address is mandatory")
     private String empAddress;
 
     public Employee() {
