@@ -3,6 +3,8 @@ package com.Employee.EmployeeManagementService.controller;
 import com.Employee.EmployeeManagementService.model.Employee;
 import com.Employee.EmployeeManagementService.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,8 +25,18 @@ public class EmployeeController {
         return employeeRepository.save(employee);
        }
     @GetMapping("/{id}")
-    public Optional<Employee> getById(@PathVariable Long id) {
-        return employeeRepository.findById(id);
+        public ResponseEntity<?> getById(@PathVariable Long id) {
+        try{
+            Optional<Employee> employee = employeeRepository.findById(id);
+            if(employee.isPresent()) {
+                return ResponseEntity.ok(employee.get() );
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Employee not found with id: " + id);
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred while retrieving the employee: " + e.getMessage());
+        }
+
     }
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Long id) {
