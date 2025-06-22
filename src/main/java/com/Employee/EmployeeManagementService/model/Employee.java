@@ -1,13 +1,23 @@
 package com.Employee.EmployeeManagementService.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int empId;
-    private int empName;
-    private int empSal;
-    private int empAddress;
+    private String empName;
+    private double empSal;
+    private String empAddress;
 
+    public Employee() {
+    }
 
-    public Employee(int empId, int empName, int empSal, int empAddress) {
+    public Employee(int empId, String empName, double empSal, String empAddress) {
         this.empId = empId;
         this.empName = empName;
         this.empSal = empSal;
@@ -22,27 +32,27 @@ public class Employee {
         this.empId = empId;
     }
 
-    public int getEmpName() {
+    public String getEmpName() {
         return empName;
     }
 
-    public void setEmpName(int empName) {
+    public void setEmpName(String empName) {
         this.empName = empName;
     }
 
-    public int getEmpSal() {
+    public double getEmpSal() {
         return empSal;
     }
 
-    public void setEmpSal(int empSal) {
+    public void setEmpSal(double empSal) {
         this.empSal = empSal;
     }
 
-    public int getEmpAddress() {
+    public String getEmpAddress() {
         return empAddress;
     }
 
-    public void setEmpAddress(int empAddress) {
+    public void setEmpAddress(String empAddress) {
         this.empAddress = empAddress;
     }
 
