@@ -18,6 +18,10 @@ public class EmployeeController {
     @Autowired
     private EmployeeRepository employeeRepository;
 
+    public EmployeeController(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
+    }
+
     @GetMapping("/all")
     public List<Employee> getAllEmployees() {
         return employeeRepository.findAll();

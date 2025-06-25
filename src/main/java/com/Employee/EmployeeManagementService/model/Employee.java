@@ -23,7 +23,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(int empId, String empName, double empSal, String empAddress) {
+    public Employee(int empId, String empName, Double empSal, String empAddress) {
         this.empId = empId;
         this.empName = empName;
         this.empSal = empSal;
@@ -46,11 +46,11 @@ public class Employee {
         this.empName = empName;
     }
 
-    public double getEmpSal() {
+    public Double getEmpSal() {
         return empSal;
     }
 
-    public void setEmpSal(double empSal) {
+    public void setEmpSal(Double empSal) {
         this.empSal = empSal;
     }
 
