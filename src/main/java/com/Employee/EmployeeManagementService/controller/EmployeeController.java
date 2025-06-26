@@ -32,16 +32,16 @@ public class EmployeeController {
        }
     @GetMapping("/{id}")
         public ResponseEntity<?> getById(@PathVariable Long id) {
-        try{
-            Optional<Employee> employee = employeeRepository.findById(id);
-            if(employee.isPresent()) {
-                return ResponseEntity.ok(employee.get() );
-            } else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Employee not found with id: " + id);
+            try{
+                Optional<Employee> employee = employeeRepository.findById(id);
+                if(employee.isPresent()) {
+                    return ResponseEntity.ok(employee.get() );
+                } else {
+                    return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Employee not found with id: " + id);
+                }
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred while retrieving the employee: " + e.getMessage());
             }
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred while retrieving the employee: " + e.getMessage());
-        }
 
     }
     @DeleteMapping("/{id}")
